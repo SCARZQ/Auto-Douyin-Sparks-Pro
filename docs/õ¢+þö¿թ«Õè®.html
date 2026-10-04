@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>使用帮助 · 云逸续火花助手</title>
+<style>
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+               "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: #f4f9ff;
+  color: #0f172a;
+}
+.lp-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 17px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+.lp-brand-ico {
+      width: 34px; height: 34px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.28);
+    }
+.lp-brand-ico svg { width: 18px; height: 18px; color: #fff; }
+/* ======================================================
+       使用帮助 · 独立网页
+       ====================================================== */
+    .hp-page {
+      min-height: 100vh;
+      background: #f4f9ff;
+      color: #0f172a;
+    }
+    .hp-topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 26px;
+      background: rgba(255, 255, 255, 0.86);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #e8f0fb;
+      flex-wrap: wrap;
+    }
+    .hp-wrap { max-width: 1180px; margin: 0 auto; padding: 0 22px 80px; }
+
+    /* Hero */
+    .hp-hero {
+      padding: 46px 0 34px;
+      text-align: center;
+    }
+    .hp-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 15px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid #dbeafe;
+      color: #2563eb;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+    .hp-hero-badge::before {
+      content: "";
+      width: 7px; height: 7px; border-radius: 50%; background: #2563eb;
+    }
+    .hp-hero h1 {
+      margin: 0 0 14px;
+      font-size: 40px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #0b1220;
+    }
+    .hp-hero h1 .blue { color: #2563eb; }
+    .hp-hero p {
+      margin: 0 auto 26px;
+      max-width: 560px;
+      font-size: 16px;
+      line-height: 1.8;
+      color: #64748b;
+    }
+    .hp-hero-chips {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .hp-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 16px;
+      border-radius: 12px;
+      background: #fff;
+      border: 1px solid #e8f0fb;
+      font-size: 13.5px;
+      color: #475569;
+      font-weight: 600;
+    }
+    .hp-chip b { color: #2563eb; font-weight: 800; }
+    .hp-chip svg { width: 15px; height: 15px; flex-shrink: 0; color: #2563eb; }
+    .hp-tip-ico {
+      width: 17px;
+      height: 17px;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+    .hp-tip-ico svg { width: 100%; height: 100%; }
+    .lp-brand-ico svg { width: 18px; height: 18px; color: #fff; }
+
+    /* 布局：目录 + 内容 */
+    .hp-layout {
+      display: grid;
+      grid-template-columns: 232px minmax(0, 1fr);
+      gap: 30px;
+      align-items: start;
+    }
+    .hp-toc {
+      position: sticky;
+      top: 88px;
+      background: #fff;
+      border: 1px solid #e8f0fb;
+      border-radius: 18px;
+      padding: 16px 12px;
+      box-shadow: 0 6px 22px rgba(15, 23, 42, 0.04);
+    }
+    .hp-toc-head {
+      font-size: 12px;
+      font-weight: 800;
+      color: #9ca3af;
+      letter-spacing: 0.06em;
+      padding: 4px 10px 10px;
+    }
+    .hp-toc-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      width: 100%;
+      padding: 9px 11px;
+      border: none;
+      background: transparent;
+      border-radius: 10px;
+      cursor: pointer;
+      text-align: left;
+      font-family: inherit;
+      font-size: 13.5px;
+      color: #475569;
+      font-weight: 600;
+      transition: all 0.15s;
+      margin-bottom: 2px;
+    }
+    .hp-toc-item:hover { background: #f5f9ff; color: #2563eb; }
+    .hp-toc-item.active {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.24);
+    }
+    .hp-toc-idx {
+      width: 19px; height: 19px;
+      flex-shrink: 0;
+      border-radius: 6px;
+      background: #f1f5f9;
+      color: #94a3b8;
+      font-size: 11px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hp-toc-item.active .hp-toc-idx { background: rgba(255,255,255,0.25); color: #fff; }
+
+    /* 内容区 */
+    .hp-content { min-width: 0; }
+    .hp-sec { margin-bottom: 34px; scroll-margin-top: 90px; }
+    .hp-sec-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .hp-sec-ico {
+      width: 42px; height: 42px;
+      border-radius: 13px;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 5px 14px rgba(37, 99, 235, 0.26);
+    }
+    .hp-sec-ico svg { width: 21px; height: 21px; }
+    .hp-sec-title { margin: 0; font-size: 22px; font-weight: 800; color: #0b1220; }
+    .hp-sec-sub { margin: 3px 0 0; font-size: 13.5px; color: #94a3b8; }
+
+    /* 步骤卡 */
+    .hp-steps { display: grid; gap: 14px; }
+    .hp-step {
+      display: flex;
+      gap: 16px;
+      padding: 20px 22px;
+      background: #fff;
+      border: 1px solid #e8f0fb;
+      border-radius: 16px;
+      transition: box-shadow 0.18s, transform 0.18s, border-color 0.18s;
+    }
+    .hp-step:hover {
+      border-color: #cfe2ff;
+      box-shadow: 0 10px 28px rgba(37, 99, 235, 0.09);
+      transform: translateY(-2px);
+    }
+    .hp-step-n {
+      width: 38px; height: 38px;
+      border-radius: 12px;
+      background: #eff6ff;
+      color: #2563eb;
+      font-size: 16px;
+      font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .hp-step-body { flex: 1; min-width: 0; }
+    .hp-step-title {
+      font-size: 16.5px;
+      font-weight: 800;
+      color: #0b1220;
+      margin: 0 0 8px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      flex-wrap: wrap;
+    }
+    .hp-step-tag {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 9px;
+      border-radius: 999px;
+      background: #e8f1ff;
+      color: #1d4ed8;
+    }
+    .hp-step-desc {
+      margin: 0 0 10px;
+      font-size: 14.5px;
+      line-height: 1.85;
+      color: #475569;
+    }
+    .hp-points { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+    .hp-points li {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      font-size: 14px;
+      line-height: 1.75;
+      color: #334155;
+    }
+    .hp-points li svg {
+      width: 15px; height: 15px;
+      flex-shrink: 0;
+      margin-top: 4px;
+      stroke: #2563eb;
+      fill: none;
+      stroke-width: 2.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .hp-tip {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+      padding: 11px 14px;
+      border-radius: 11px;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      font-size: 13.5px;
+      line-height: 1.75;
+      color: #92400e;
+    }
+    .hp-tip.warn { background: #fef2f2; border-color: #fecaca; color: #b91c1c; }
+    .hp-tip.info { background: #f0f7ff; border-color: #dbeafe; color: #3b6ea5; }
+
+    /* 页面说明卡 */
+    .hp-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 14px;
+    }
+    .hp-card {
+      background: #fff;
+      border: 1px solid #e8f0fb;
+      border-radius: 15px;
+      padding: 18px;
+      transition: box-shadow 0.18s, transform 0.18s, border-color 0.18s;
+    }
+    .hp-card:hover {
+      border-color: #cfe2ff;
+      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.08);
+      transform: translateY(-2px);
+    }
+    .hp-card-top { display: flex; align-items: center; gap: 11px; margin-bottom: 10px; }
+    .hp-card-ico {
+      width: 38px; height: 38px;
+      border-radius: 11px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .hp-card-ico svg { width: 19px; height: 19px; }
+    .hp-card-name { font-size: 15.5px; font-weight: 800; color: #0b1220; }
+    .hp-card-desc { margin: 0; font-size: 13.5px; line-height: 1.8; color: #64748b; }
+
+    /* FAQ 折叠 */
+    .hp-faq { display: grid; gap: 10px; }
+    .hp-faq-item {
+      background: #fff;
+      border: 1px solid #e8f0fb;
+      border-radius: 14px;
+      overflow: hidden;
+      transition: border-color 0.16s, box-shadow 0.16s;
+    }
+    .hp-faq-item.open { border-color: #cfe2ff; box-shadow: 0 6px 20px rgba(37,99,235,0.07); }
+    .hp-faq-q {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      width: 100%;
+      padding: 15px 18px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      text-align: left;
+      font-family: inherit;
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #1f2937;
+      transition: background 0.15s;
+    }
+    .hp-faq-q:hover { background: #f8fbff; }
+    .hp-faq-mark {
+      width: 22px; height: 22px;
+      border-radius: 7px;
+      background: #eff6ff;
+      color: #2563eb;
+      font-size: 13px;
+      font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .hp-faq-text { flex: 1; min-width: 0; }
+    .hp-faq-caret {
+      color: #cbd5e1;
+      transition: transform 0.2s;
+      flex-shrink: 0;
+      display: inline-flex;
+    }
+    .hp-faq-caret svg { width: 15px; height: 15px; }
+    .hp-faq-item.open .hp-faq-caret { transform: rotate(180deg); color: #2563eb; }
+    .hp-faq-a {
+      padding: 0 18px 16px 51px;
+      font-size: 14px;
+      line-height: 1.9;
+      color: #475569;
+      white-space: pre-wrap;
+    }
+
+    /* 授权表 */
+    .hp-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: #fff;
+      border: 1px solid #e8f0fb;
+      border-radius: 14px;
+      overflow: hidden;
+      font-size: 14px;
+    }
+    .hp-table th {
+      background: #f8fbff;
+      color: #6b7280;
+      font-weight: 700;
+      text-align: left;
+      padding: 11px 16px;
+      font-size: 13px;
+      border-bottom: 1px solid #eef2f8;
+    }
+    .hp-table td {
+      padding: 11px 16px;
+      color: #334155;
+      border-bottom: 1px solid #f6f8fb;
+    }
+    .hp-table tr:last-child td { border-bottom: none; }
+    .hp-table code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      background: #eff6ff;
+      color: #1d4ed8;
+      padding: 2px 7px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .hp-backtop {
+      position: fixed;
+      right: 26px;
+      bottom: 26px;
+      z-index: 40;
+      width: 46px; height: 46px;
+      border-radius: 14px;
+      border: 1px solid #e8f0fb;
+      background: #fff;
+      color: #2563eb;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.10);
+      transition: all 0.18s;
+    }
+    .hp-backtop:hover { background: #2563eb; color: #fff; transform: translateY(-2px); }
+    .hp-backtop svg { width: 19px; height: 19px; }
+
+    @media (max-width: 900px) {
+      .hp-layout { grid-template-columns: 1fr; gap: 18px; }
+      .hp-toc {
+        position: static;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        padding: 12px;
+      }
+      .hp-toc-head { width: 100%; padding-bottom: 6px; }
+      .hp-toc-item {
+        width: auto;
+        background: #f8fafc;
+        margin-bottom: 0;
+        padding: 7px 13px;
+        font-size: 12.5px;
+      }
+      .hp-toc-idx { display: none; }
+      .hp-hero h1 { font-size: 28px; }
+      .hp-hero { padding: 30px 0 24px; }
+      .hp-step { padding: 16px; gap: 13px; }
+      .hp-faq-a { padding-left: 18px; }
+    }
+
+    
+</style>
+</head>
+<body>
+
+<div class="hp-page">
+  <div class="hp-topbar">
+    <div class="lp-brand">
+      <span class="lp-brand-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.6c.8 2.6-.4 4.2-1.8 5.6-1.4 1.4-2.8 2.9-2.8 5.4a6.6 6.6 0 0 0 13.2 0c0-1.8-.7-3.2-1.6-4.3-.5 1-1.2 1.6-2.1 1.9.5-2.6-.4-6.2-4.9-8.6z"/></svg></span>
+      <span>云逸续火花助手</span>
+    </div>
+  </div>
+
+  <div class="hp-wrap">
+    <div class="hp-hero">
+      <div class="hp-hero-badge">使用帮助</div>
+      <h1>3 分钟学会<span class="blue">自动续火花</span></h1>
+      <p>跟着下面的 4 步走一遍，之后系统每天会自动帮你给好友发消息，维持聊天火花不中断。</p>
+      <div class="hp-hero-chips">
+        <span class="hp-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> <b>4</b>&nbsp;步上手</span>
+        <span class="hp-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.5 2.5 0 0 1 4.8.9c0 1.6-2.4 2-2.4 3.4"/><circle cx="12" cy="16.6" r=".9"/></svg> <b>7</b>&nbsp;个常见问题</span>
+        <span class="hp-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2 14.7 9l6.3.8-4.6 4.4 1.2 6.3L12 17.6 6.4 20.5l1.2-6.3L3 9.8 9.3 9z"/></svg> AI 文案可选</span>
+        <span class="hp-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.4-5.7"/><path d="M20 4.5v4h-4"/></svg> 全自动运行</span>
+      </div>
+    </div>
+
+    <div class="hp-layout">
+      <aside class="hp-toc">
+        <div class="hp-toc-head">目录</div>
+            <button type="button" class="hp-toc-item active" data-target="hp-start">
+              <span class="hp-toc-idx">1</span>
+              <span>快速上手</span>
+            </button>
+            <button type="button" class="hp-toc-item" data-target="hp-pages">
+              <span class="hp-toc-idx">2</span>
+              <span>各页面说明</span>
+            </button>
+            <button type="button" class="hp-toc-item" data-target="hp-ai">
+              <span class="hp-toc-idx">3</span>
+              <span>AI 文案怎么用</span>
+            </button>
+            <button type="button" class="hp-toc-item" data-target="hp-auth">
+              <span class="hp-toc-idx">4</span>
+              <span>授权与续期</span>
+            </button>
+            <button type="button" class="hp-toc-item" data-target="hp-faq">
+              <span class="hp-toc-idx">5</span>
+              <span>常见问题</span>
+            </button>
+            <button type="button" class="hp-toc-item" data-target="hp-tips">
+              <span class="hp-toc-idx">6</span>
+              <span>使用建议</span>
+            </button>
+            <button type="button" class="hp-toc-item" data-target="hp-risk">
+              <span class="hp-toc-idx">7</span>
+              <span>风险提示</span>
+            </button>
+      </aside>
+
+      <div class="hp-content">
+
+        <!-- 1 快速上手 -->
+        <section id="hp-start" class="hp-sec">
+          <div class="hp-sec-head">
+            <span class="hp-sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.5 13.5H11l-1 8.5L19.5 10.5H13z"/></svg></span>
+            <div>
+              <h2 class="hp-sec-title">快速上手</h2>
+              <p class="hp-sec-sub">按顺序做完这 4 步，就可以撒手不管了</p>
+            </div>
+          </div>
+
+          <div class="hp-steps">
+            <div class="hp-step">
+              <div class="hp-step-n">1</div>
+              <div class="hp-step-body">
+                <h3 class="hp-step-title">登录抖音 <span class="hp-step-tag">必做</span></h3>
+                <p class="hp-step-desc">打开底部 <b>「凭证」</b> 页面，二选一：</p>
+                <ul class="hp-points">
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span><b>网页登录</b>：点「网页登录」，在弹出的浏览器窗口用手机抖音 App 扫码</span></li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span><b>登录态登录</b>：点「上传抖音登录态」，选择本机导出的 <code>state.json</code></span></li>
+                </ul>
+                <div class="hp-tip info">
+                  <span class="hp-tip-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12.3 2.7 2.7L16 9.5"/></svg></span>
+                  <span>看到顶部显示 <b>绿色「已登录」</b> 就成功了。如果显示「未登录」，说明登录态失效，重新登录一次即可。</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="hp-step">
+              <div class="hp-step-n">2</div>
+              <div class="hp-step-body">
+                <h3 class="hp-step-title">获取并勾选好友 <span class="hp-step-tag">必做</span></h3>
+                <ul class="hp-points">
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span>打开底部 <b>「好友」</b> 页面</span></li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span>点 <b>「获取聊天列表」</b>，等待读取（约 10～60 秒）</span></li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span>在列表里 <b>勾选需要续火花的好友</b></span></li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span>点 <b>「保存勾选与消息」</b></span></li>
+                </ul>
+                <div class="hp-tip warn">
+                  <span class="hp-tip-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.5 2.5 17a2 2 0 0 0 1.7 3h15.6a2 2 0 0 0 1.7-3L13.7 3.5a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><circle cx="12" cy="16.5" r=".9"/></svg></span>
+                  <span>好友 <b>只能从列表勾选</b>，不能手动输入名字。</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="hp-step">
+              <div class="hp-step-n">3</div>
+              <div class="hp-step-body">
+                <h3 class="hp-step-title">设置发送时间 <span class="hp-step-tag">必做</span></h3>
+                <p class="hp-step-desc">打开底部 <b>「定时」</b> 页面，按下表填写后点「保存定时设置」：</p>
+                <table class="hp-table" style="margin-top:10px;">
+                  <thead>
+                    <tr><th style="width:38%;">项目</th><th style="width:26%;">建议值</th><th>说明</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>每天发送时间</td><td><code>09:30</code></td><td>每天自动开跑的时间</td></tr>
+                    <tr><td>时间抖动窗口</td><td><code>5～15</code> 分钟</td><td>在设定时间后 0～N 分钟内随机开始，更像真人</td></tr>
+                    <tr><td>好友间隔</td><td><code>3～8</code> 秒</td><td>每发一位好友间隔多久</td></tr>
+                    <tr><td>每次最多发送人数</td><td><code>0</code></td><td>0 表示不限制</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="hp-step">
+              <div class="hp-step-n">4</div>
+              <div class="hp-step-body">
+                <h3 class="hp-step-title">查看运行结果</h3>
+                <ul class="hp-points">
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span><b>「概览」</b>：看登录状态、是否占用、上次/下次发送时间、授权到期日</span></li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span><b>「日志」</b>：看每次发送的详细记录（成功谁、失败谁、原因）</span></li>
+                </ul>
+                <div class="hp-tip info">
+                  <span class="hp-tip-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 1 3.5 10.9c-.4.3-.5.7-.5 1.1H9c0-.4-.1-.8-.5-1.1A6 6 0 0 1 12 3z"/></svg></span>
+                  <span>想立刻试一次效果，可以在「概览」点 <b>「干跑测试」</b>（只模拟不真发）。</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2 各页面说明 -->
+        <section id="hp-pages" class="hp-sec">
+          <div class="hp-sec-head">
+            <span class="hp-sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.6"/><rect x="14" y="3" width="7" height="7" rx="1.6"/><rect x="14" y="14" width="7" height="7" rx="1.6"/><rect x="3" y="14" width="7" height="7" rx="1.6"/></svg></span>
+            <div>
+              <h2 class="hp-sec-title">各页面说明</h2>
+              <p class="hp-sec-sub">底部 6 个页面分别能做什么</p>
+            </div>
+          </div>
+          <div class="hp-cards">
+                <div class="hp-card">
+                  <div class="hp-card-top">
+                    <span class="hp-card-ico" style="background:#eff6ff;color:#2563eb;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.6"/><rect x="14" y="3" width="7" height="7" rx="1.6"/><rect x="14" y="14" width="7" height="7" rx="1.6"/><rect x="3" y="14" width="7" height="7" rx="1.6"/></svg></span>
+                    <span class="hp-card-name">概览</span>
+                  </div>
+                  <p class="hp-card-desc">看抖音账号信息、是否占用续火花、上次与下次发送时间、授权到期日。还能「使用卡密」自助续期，以及手动「立即发送 / 干跑测试 / 强制停止」。</p>
+                </div>
+                <div class="hp-card">
+                  <div class="hp-card-top">
+                    <span class="hp-card-ico" style="background:#eef2ff;color:#4f46e5;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="9.5" rx="2.2"/><path d="M8.2 10.5V7.6a3.8 3.8 0 0 1 7.6 0v2.9"/></svg></span>
+                    <span class="hp-card-name">凭证</span>
+                  </div>
+                  <p class="hp-card-desc">管理抖音登录状态。支持「网页扫码登录」和「上传 state.json」两种方式。登录态失效时来这里重新登录。</p>
+                </div>
+                <div class="hp-card">
+                  <div class="hp-card-top">
+                    <span class="hp-card-ico" style="background:#f0fdf4;color:#16a34a;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span>
+                    <span class="hp-card-name">好友</span>
+                  </div>
+                  <p class="hp-card-desc">读取抖音聊天列表、勾选要续火花的好友、设置消息模板，还能配置 AI 续火花文案。</p>
+                </div>
+                <div class="hp-card">
+                  <div class="hp-card-top">
+                    <span class="hp-card-ico" style="background:#fff7ed;color:#ea580c;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+                    <span class="hp-card-name">定时</span>
+                  </div>
+                  <p class="hp-card-desc">设置每天几点发送、时间抖动窗口、好友间隔、单次上限。抖动能让发送时间随机，更接近真人节奏。</p>
+                </div>
+                <div class="hp-card">
+                  <div class="hp-card-top">
+                    <span class="hp-card-ico" style="background:#ecfeff;color:#0891b2;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h6"/></svg></span>
+                    <span class="hp-card-name">日志</span>
+                  </div>
+                  <p class="hp-card-desc">查看每次运行的详细记录，按天保存。支持自动刷新，也能把当日日志发到自己的邮箱。</p>
+                </div>
+                <div class="hp-card">
+                  <div class="hp-card-top">
+                    <span class="hp-card-ico" style="background:#f5f3ff;color:#7c3aed;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg></span>
+                    <span class="hp-card-name">我的</span>
+                  </div>
+                  <p class="hp-card-desc">查看登录账号、账号等级、注册时间；修改用户名 / 密码 / 收件邮箱；联系客服、查看帮助、退出登录。</p>
+                </div>
+          </div>
+        </section>
+
+        <!-- 3 AI 文案 -->
+        <section id="hp-ai" class="hp-sec">
+          <div class="hp-sec-head">
+            <span class="hp-sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2 14.7 9l6.3.8-4.6 4.4 1.2 6.3L12 17.6 6.4 20.5l1.2-6.3L3 9.8 9.3 9z"/></svg></span>
+            <div>
+              <h2 class="hp-sec-title">AI 文案怎么用</h2>
+              <p class="hp-sec-sub">可选功能 · 让每句话都不一样</p>
+            </div>
+          </div>
+
+          <div class="hp-step">
+            <div class="hp-step-n" style="background:#f5f3ff;color:#7c3aed;">AI</div>
+            <div class="hp-step-body">
+              <p class="hp-step-desc">在 <b>「好友」</b> 页找到「AI 续火花文案」区域，按下面顺序配置：</p>
+              <ul class="hp-points">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span>打开 <b>「启用 AI 文案」</b> 开关</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span>填 <b>API 地址</b> —— 填到 <code>/v1</code> 为止，<b>不要</b>带 <code>/chat/completions</code><br><span style="color:#94a3b8;font-size:13px;">官方：<code>https://api.openai.com/v1</code> ｜ 中转：<code>https://你的域名/v1</code></span></span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span>填 <b>API Key</b>（<code>sk-</code> 开头）</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span>填 <b>模型</b>（如 <code>gpt-4o-mini</code>）</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span>写 <b>系统提示词</b>（告诉 AI 怎么写）</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span>先点 <b>「测试 API 连通」</b>，再点 <b>「测试提示词」</b> 预览效果</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span>确认没问题后点 <b>「保存勾选与消息」</b></span></li>
+              </ul>
+              <div class="hp-tip info">
+                <span class="hp-tip-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.8 19.5 6v6c0 4.6-3.2 8.4-7.5 9.6C7.7 20.4 4.5 16.6 4.5 12V6z"/><path d="m8.8 12 2.3 2.3 4.1-4.4"/></svg></span>
+                <span>如果 AI 调用失败，系统会自动回退到你的 <b>消息模板</b>，不会发不出去。</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4 授权与续期 -->
+        <section id="hp-auth" class="hp-sec">
+          <div class="hp-sec-head">
+            <span class="hp-sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2.8" y="6.5" width="18.4" height="11" rx="2.4"/><path d="M2.8 10.5h18.4"/><path d="M6.5 14.5h4"/></svg></span>
+            <div>
+              <h2 class="hp-sec-title">授权与续期</h2>
+              <p class="hp-sec-sub">两种模式 · 以及卡密怎么用</p>
+            </div>
+          </div>
+
+          <div class="hp-cards" style="margin-bottom:16px;">
+            <div class="hp-card">
+              <div class="hp-card-top">
+                <span class="hp-card-ico" style="background:#eff6ff;color:#2563eb;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+                <span class="hp-card-name">独立模式</span>
+              </div>
+              <p class="hp-card-desc">无到期限制，一直可用。没有「到期」概念，不用管续期。</p>
+            </div>
+            <div class="hp-card">
+              <div class="hp-card-top">
+                <span class="hp-card-ico" style="background:#fff7ed;color:#ea580c;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+                <span class="hp-card-name">授权模式</span>
+              </div>
+              <p class="hp-card-desc">有到期时间，到期后自动停用。需要用卡密续期。</p>
+            </div>
+          </div>
+
+          <div class="hp-step">
+            <div class="hp-step-n" style="background:#f0fdf4;color:#16a34a;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round"><rect x="2.8" y="6.5" width="18.4" height="11" rx="2.4"/><path d="M2.8 10.5h18.4"/><path d="M6.5 14.5h4"/></svg></div>
+            <div class="hp-step-body">
+              <h3 class="hp-step-title">怎么用卡密续期</h3>
+              <p class="hp-step-desc">拿到卡密后，在 <b>「概览 → 使用卡密」</b> 输入卡密，点「立即兑换」。
+                天数会 <b>自动叠加</b> 到现有到期时间上，不会覆盖。</p>
+
+              <h3 class="hp-step-title" style="font-size:15px;margin-top:16px;">卡密面额怎么看</h3>
+              <p class="hp-step-desc">卡密 <b>开头的数字就是天数</b>：</p>
+              <table class="hp-table" style="margin-top:6px;">
+                <thead><tr><th style="width:30%;">卡密开头</th><th>面额</th></tr></thead>
+                <tbody>
+                  <tr><td><code>1...</code></td><td>1 天</td></tr>
+                  <tr><td><code>3...</code></td><td>3 天</td></tr>
+                  <tr><td><code>7...</code></td><td>7 天</td></tr>
+                  <tr><td><code>15...</code></td><td>15 天</td></tr>
+                  <tr><td><code>30...</code></td><td>1 个月</td></tr>
+                  <tr><td><code>90...</code></td><td>3 个月</td></tr>
+                  <tr><td><code>180...</code></td><td>6 个月</td></tr>
+                  <tr><td><code>365...</code></td><td>1 年</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5 常见问题 -->
+        <section id="hp-faq" class="hp-sec">
+          <div class="hp-sec-head">
+            <span class="hp-sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.5 2.5 0 0 1 4.8.9c0 1.6-2.4 2-2.4 3.4"/><circle cx="12" cy="16.6" r=".9"/></svg></span>
+            <div>
+              <h2 class="hp-sec-title">常见问题</h2>
+              <p class="hp-sec-sub">点击展开查看答案</p>
+            </div>
+          </div>
+          <div class="hp-faq">
+              <div class="hp-faq-item" data-faq>
+                <button type="button" class="hp-faq-q">
+                  <span class="hp-faq-mark">Q</span>
+                  <span class="hp-faq-text">提示「未登录」或「登录态已失效」怎么办？</span>
+                  <span class="hp-faq-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9.5 6 6 6-6"/></svg></span>
+                </button>
+                <div class="hp-faq-a" hidden>说明抖音登录态过期了。<br>到「凭证」页面重新扫码登录，或重新上传 state.json 即可。</div>
+              </div>
+              <div class="hp-faq-item" data-faq>
+                <button type="button" class="hp-faq-q">
+                  <span class="hp-faq-mark">Q</span>
+                  <span class="hp-faq-text">显示「当前账号尚未登录抖音，无法进行任务」？</span>
+                  <span class="hp-faq-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9.5 6 6 6-6"/></svg></span>
+                </button>
+                <div class="hp-faq-a" hidden>同上，先去「凭证」完成抖音登录。登录成功后这个提示会自动消失，下次发送时间也会正常显示。</div>
+              </div>
+              <div class="hp-faq-item" data-faq>
+                <button type="button" class="hp-faq-q">
+                  <span class="hp-faq-mark">Q</span>
+                  <span class="hp-faq-text">任务没发出去 / 出现验证码、操作频繁？</span>
+                  <span class="hp-faq-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9.5 6 6 6-6"/></svg></span>
+                </button>
+                <div class="hp-faq-a" hidden>系统检测到风控会自动停止本轮，这是保护机制，防止你的账号被进一步限制。<br>请次日再试，不要频繁重试，否则可能加重风控。</div>
+              </div>
+              <div class="hp-faq-item" data-faq>
+                <button type="button" class="hp-faq-q">
+                  <span class="hp-faq-mark">Q</span>
+                  <span class="hp-faq-text">发送时间不准 / 延迟了？</span>
+                  <span class="hp-faq-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9.5 6 6 6-6"/></svg></span>
+                </button>
+                <div class="hp-faq-a" hidden>正常现象。<br>① 发送时间有「随机抖动」设计（在设定时间后 0～N 分钟内随机开始）；<br>② 加上网络与平台因素，实际时间可能比设定值晚几分钟到几十分钟。<br>只要日志里有成功记录，就说明任务正常执行了。</div>
+              </div>
+              <div class="hp-faq-item" data-faq>
+                <button type="button" class="hp-faq-q">
+                  <span class="hp-faq-mark">Q</span>
+                  <span class="hp-faq-text">好友列表是空的 / 读取失败？</span>
+                  <span class="hp-faq-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9.5 6 6 6-6"/></svg></span>
+                </button>
+                <div class="hp-faq-a" hidden>① 点「获取聊天列表」重新读取；<br>② 如果一直失败，检查抖音登录态是否有效（到「凭证」看是否为绿色「已登录」）。</div>
+              </div>
+              <div class="hp-faq-item" data-faq>
+                <button type="button" class="hp-faq-q">
+                  <span class="hp-faq-mark">Q</span>
+                  <span class="hp-faq-text">收不到邮件通知？</span>
+                  <span class="hp-faq-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9.5 6 6 6-6"/></svg></span>
+                </button>
+                <div class="hp-faq-a" hidden>检查两点：<br>①「我的 → 收件邮箱」是否填写；<br>② 管理员是否已在后台配置发件邮箱（SMTP）。<br>两个都满足才会发信。</div>
+              </div>
+              <div class="hp-faq-item" data-faq>
+                <button type="button" class="hp-faq-q">
+                  <span class="hp-faq-mark">Q</span>
+                  <span class="hp-faq-text">怎么修改登录账号名？</span>
+                  <span class="hp-faq-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9.5 6 6 6-6"/></svg></span>
+                </button>
+                <div class="hp-faq-a" hidden>到「我的 → 修改账号用户名」修改。<br>注意：改名后你的账号目录会同步改名，不会影响任何数据，也不需要重新配置。</div>
+              </div>
+          </div>
+        </section>
+
+        <!-- 6 使用建议 -->
+        <section id="hp-tips" class="hp-sec">
+          <div class="hp-sec-head">
+            <span class="hp-sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 1 3.5 10.9c-.4.3-.5.7-.5 1.1H9c0-.4-.1-.8-.5-1.1A6 6 0 0 1 12 3z"/></svg></span>
+            <div>
+              <h2 class="hp-sec-title">使用建议</h2>
+              <p class="hp-sec-sub">这样用更稳、更安全</p>
+            </div>
+          </div>
+          <div class="hp-steps">
+                <div class="hp-step" style="padding:16px 20px;">
+                  <div class="hp-step-n" style="width:32px;height:32px;font-size:14px;">1</div>
+                  <div class="hp-step-body">
+                    <div style="font-size:14.5px;line-height:1.85;color:#334155;">仅限本人账号、少量好友自用，请勿用于营销或对外服务。</div>
+                  </div>
+                </div>
+                <div class="hp-step" style="padding:16px 20px;">
+                  <div class="hp-step-n" style="width:32px;height:32px;font-size:14px;">2</div>
+                  <div class="hp-step-body">
+                    <div style="font-size:14.5px;line-height:1.85;color:#334155;">好友数量控制在少量（建议 10 人以内），发送间隔不要太短。</div>
+                  </div>
+                </div>
+                <div class="hp-step" style="padding:16px 20px;">
+                  <div class="hp-step-n" style="width:32px;height:32px;font-size:14px;">3</div>
+                  <div class="hp-step-body">
+                    <div style="font-size:14.5px;line-height:1.85;color:#334155;">登录态尽量在常用网络环境获取，减少异地登录触发的风控。</div>
+                  </div>
+                </div>
+                <div class="hp-step" style="padding:16px 20px;">
+                  <div class="hp-step-n" style="width:32px;height:32px;font-size:14px;">4</div>
+                  <div class="hp-step-body">
+                    <div style="font-size:14.5px;line-height:1.85;color:#334155;">出现验证码 / 操作频繁时停止本轮，次日再试，不要反复重试。</div>
+                  </div>
+                </div>
+                <div class="hp-step" style="padding:16px 20px;">
+                  <div class="hp-step-n" style="width:32px;height:32px;font-size:14px;">5</div>
+                  <div class="hp-step-body">
+                    <div style="font-size:14.5px;line-height:1.85;color:#334155;">不要把 data 目录或登录态文件分享给任何人，那等于交出账号。</div>
+                  </div>
+                </div>
+          </div>
+        </section>
+
+        <!-- 7 风险提示 -->
+        <section id="hp-risk" class="hp-sec">
+          <div class="hp-sec-head">
+            <span class="hp-sec-ico" style="background:linear-gradient(135deg,#ef4444,#dc2626);box-shadow:0 5px 14px rgba(239,68,68,0.26);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.5 2.5 17a2 2 0 0 0 1.7 3h15.6a2 2 0 0 0 1.7-3L13.7 3.5a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><circle cx="12" cy="16.5" r=".9"/></svg></span>
+            <div>
+              <h2 class="hp-sec-title">风险提示</h2>
+              <p class="hp-sec-sub">使用前请务必了解</p>
+            </div>
+          </div>
+
+          <div class="hp-tip warn" style="padding:16px 18px;font-size:14px;line-height:1.9;">
+            <span class="hp-tip-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.5 2.5 17a2 2 0 0 0 1.7 3h15.6a2 2 0 0 0 1.7-3L13.7 3.5a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><circle cx="12" cy="16.5" r=".9"/></svg></span>
+            <span>
+              本系统为 <b>第三方辅助工具</b>，与抖音官方 <b>无任何关联</b>。<br>
+              自动化操作 <b>可能触发平台风控</b>，存在限流、功能限制甚至封号风险。<br>
+              因使用本系统产生的 <b>账号风险由使用者自行承担</b>。<br>
+              请遵守抖音平台的服务协议与社区规范。
+            </span>
+          </div>
+        </section>
+
+        <div style="text-align:center;padding:26px 0 10px;border-top:1px solid #e8f0fb;">
+          <div style="font-size:14px;color:#64748b;">
+            还有其他问题？请联系管理员获取帮助
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <button type="button" class="hp-backtop" id="hpTop" title="回到顶部"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="m5.5 11.5 6.5-6.5 6.5 6.5"/></svg></button>
+</div>
+
+<script>
+(function () {
+  var items = document.querySelectorAll('.hp-toc-item');
+  var sections = [];
+  items.forEach(function (btn) {
+    var el = document.getElementById(btn.getAttribute('data-target'));
+    if (el) sections.push({ btn: btn, el: el });
+  });
+
+  function setActive(idx) {
+    items.forEach(function (b, i) { b.classList.toggle('active', i === idx); });
+  }
+
+  items.forEach(function (btn, i) {
+    btn.addEventListener('click', function () {
+      var el = document.getElementById(btn.getAttribute('data-target'));
+      if (!el) return;
+      setActive(i);
+      var top = el.getBoundingClientRect().top + window.pageYOffset - 80;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    });
+  });
+
+  // FAQ 手风琴
+  document.querySelectorAll('[data-faq]').forEach(function (item) {
+    var q = item.querySelector('.hp-faq-q');
+    var a = item.querySelector('.hp-faq-a');
+    q.addEventListener('click', function () {
+      var open = !a.hasAttribute('hidden');
+      document.querySelectorAll('[data-faq]').forEach(function (o) {
+        o.classList.remove('open');
+        var oa = o.querySelector('.hp-faq-a');
+        if (oa) oa.setAttribute('hidden', '');
+      });
+      if (!open) {
+        item.classList.add('open');
+        a.removeAttribute('hidden');
+      }
+    });
+  });
+
+  // 回到顶部 + 目录高亮
+  var topBtn = document.getElementById('hpTop');
+  var ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      var y = window.pageYOffset;
+      topBtn.classList.toggle('hp-show', y > 400);
+      topBtn.style.display = y > 400 ? 'flex' : 'none';
+      var cur = 0;
+      for (var i = 0; i < sections.length; i++) {
+        if (sections[i].el.offsetTop <= y + 120) cur = i;
+      }
+      setActive(cur);
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  topBtn.addEventListener('click', function () {
+    setActive(0);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+</script>
+</body>
+</html>

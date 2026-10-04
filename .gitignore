@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Runtime data (勿提交账号/密钥/日志)
+data/
+.env
+*.log
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.swp
+
+# Playwright
+.playwright/
+playwright-report/
+
+# Local zips / backups
+*.zip
+*.bak
